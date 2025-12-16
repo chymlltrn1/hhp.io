@@ -6,6 +6,7 @@
 <title>hhp · GI Oncology</title>
 <meta name="description" content="胃癌、结直肠癌 · 生信与临床融合 · 个人主页">
 <meta name="color-scheme" content="light dark">
+
 <style>
   :root{
     --bg1:#0f1323; --bg2:#1a1440; --glass:rgba(255,255,255,.08);
@@ -26,6 +27,8 @@
     background-attachment: fixed;
   }
   .wrap{max-width:1040px; margin:0 auto; padding:0 20px}
+
+  /* 顶部导航 */
   .nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px);
        background:linear-gradient(to bottom,rgba(0,0,0,.25),transparent);
        border-bottom:1px solid var(--border)}
@@ -36,9 +39,12 @@
     box-shadow:0 6px 18px rgba(123,92,255,.45), inset 0 0 12px rgba(255,255,255,.15)}
   .nav a{color:var(--text); text-decoration:none; opacity:.85}
   .nav a:hover{opacity:1}
-  .menu{display:flex; gap:18px}
+  .menu{display:flex; gap:18px; align-items:center}
   .nav-cta{padding:8px 14px; border-radius:999px; background:linear-gradient(135deg,var(--accent),#00dbff);
            color:white!important; box-shadow:0 8px 20px rgba(123,92,255,.45)}
+  .nav-ghost{padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:var(--glass)}
+
+  /* Hero */
   .hero{padding:84px 0 36px}
   .hero .title{
     font-size:clamp(32px,4.5vw,56px); line-height:1.15; margin:0 0 14px; font-weight:900;
@@ -47,19 +53,80 @@
   .hero .desc{font-size:18px; color:var(--muted); max-width:820px}
   .badges{display:flex; gap:10px; flex-wrap:wrap; margin:22px 0 0}
   .badge{border:1px solid var(--border); background:var(--glass); padding:8px 12px; border-radius:999px; backdrop-filter:blur(8px)}
+  .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+  .hero-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:14px;
+    border:1px solid var(--border);
+    background:var(--glass);
+    color:var(--text); text-decoration:none;
+    backdrop-filter:blur(8px);
+    box-shadow:var(--shadow);
+  }
+  .hero-btn.primary{
+    background:linear-gradient(135deg,var(--accent),#00dbff);
+    color:white; border:none;
+  }
+  .hero-btn:hover{transform:translateY(-1px)}
+
   section{padding:36px 0 10px}
   .section-header{display:flex; align-items:flex-end; justify-content:space-between; margin:10px 0 18px}
   .section-title{font-size:24px; font-weight:800}
   .grid{display:grid; gap:16px}
   @media(min-width:760px){ .grid-3{grid-template-columns:repeat(3,1fr)} .grid-2{grid-template-columns:repeat(2,1fr)} }
+
+  /* 卡片 */
   .card{position:relative; border-radius:var(--radius); border:1px solid var(--border);
         background:var(--card); box-shadow:var(--shadow); overflow:hidden}
-  .card .thumb{height:160px; background:linear-gradient(135deg, rgba(123,92,255,.35), rgba(0,219,255,.35))}
+  .card .thumb{height:160px; background:
+      linear-gradient(135deg, rgba(123,92,255,.35), rgba(0,219,255,.35));
+  }
   .card .body{padding:16px}
   .card h3{margin:0 0 6px; font-size:18px}
   .card p{margin:0; color:var(--muted)}
   .tags{margin-top:10px; display:flex; gap:8px; flex-wrap:wrap}
   .tag{font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:var(--glass)}
+
+  /* 平台卡片专用：预览图与按钮 */
+  .card-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+  .pill-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:9px 12px; border-radius:999px;
+    border:1px solid var(--border);
+    background:var(--glass);
+    color:var(--text); text-decoration:none;
+    cursor:pointer;
+  }
+  .pill-btn.primary{
+    border:none;
+    background:linear-gradient(135deg,var(--accent),#00dbff);
+    color:white;
+  }
+  .pill-btn:hover{transform:translateY(-1px)}
+  .mini-previews{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:12px}
+  .mini-previews a{display:block; text-decoration:none}
+  .mini-previews .shot{
+    height:58px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    background:
+      linear-gradient(135deg, rgba(123,92,255,.25), rgba(0,219,255,.25));
+    overflow:hidden;
+    position:relative;
+  }
+  .mini-previews img{
+    width:100%; height:100%;
+    object-fit:cover; display:block;
+    filter:saturate(1.05) contrast(1.02);
+  }
+  .mini-previews .shot::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,.35), transparent 60%);
+    pointer-events:none;
+  }
+
+  /* 时间线等 */
   .timeline{position:relative; margin:8px 0}
   .timeline::before{content:""; position:absolute; left:10px; top:0; bottom:0; width:2px; background:linear-gradient(var(--accent), #00dbff)}
   .tl-item{position:relative; padding-left:28px; margin:14px 0}
@@ -68,7 +135,10 @@
   .tl-title{margin:0 0 4px; font-weight:700}
   .tl-meta{color:var(--muted); font-size:14px; margin-bottom:6px}
   details summary{cursor:pointer; user-select:none; color:var(--accent); margin-top:6px}
+
   footer{margin:28px 0 40px; color:var(--muted); text-align:center}
+
+  /* 浮动按钮 */
   .fab{position:fixed; right:18px; bottom:18px; display:flex; gap:10px; z-index:60}
   .btn{border:none; cursor:pointer; padding:10px 12px; border-radius:12px;
        background:var(--glass); border:1px solid var(--border); color:var(--text);
@@ -76,13 +146,17 @@
   .btn:hover{transform:translateY(-1px)}
   .accent-dot{width:18px; height:18px; border-radius:50%; border:2px solid #ffffff55; box-shadow:inset 0 0 0 2px rgba(0,0,0,.15)}
   .accent-row{display:flex; gap:8px; align-items:center}
+
+  /* 滚动动画 */
   .reveal{opacity:0; transform:translateY(18px); transition:all .6s ease}
   .reveal.on{opacity:1; transform:none}
+
   .muted{color:var(--muted)}
   a.link{color:var(--accent); text-decoration:none}
   a.link:hover{text-decoration:underline}
 </style>
 </head>
+
 <body>
 
   <!-- 顶部导航 -->
@@ -91,6 +165,7 @@
       <div class="brand"><div class="logo" aria-hidden="true"></div> <span>hhp</span></div>
       <nav class="menu">
         <a href="#about">关于</a>
+        <a href="#tools" class="nav-ghost">工具</a>
         <a href="#projects">项目</a>
         <a href="#research">研究方向</a>
         <a href="#contact" class="nav-cta">联系我</a>
@@ -102,11 +177,19 @@
   <header class="hero wrap">
     <h1 class="title">临床 × 生信 · 胃肠肿瘤研究</h1>
     <p class="desc">生信是基础实验的方向标，基础实验是生信的奠基石。</p>
+
     <div class="badges">
       <span class="badge">Gastric Cancer</span>
       <span class="badge">Colorectal Cancer</span>
-      <span class="badge">Single-cell · Spatial</span>
+      <span class="badge">Single-cell · cfRNA · Bulk</span>
       <span class="badge">R · Python · HPC</span>
+    </div>
+
+    <div class="hero-actions">
+      <a class="hero-btn primary" id="openNetaaTop" href="#" target="_blank" rel="noopener noreferrer">
+        🚀 打开 GI 单基因分析平台
+      </a>
+      <a class="hero-btn" href="#tools">🧩 先看平台功能预览</a>
     </div>
   </header>
 
@@ -120,6 +203,89 @@
         <div class="body">
           <p>聚焦胃癌与结直肠癌的数据驱动研究：基因组/转录组/空间转录组/单细胞数据解析，结合临床信息开展分层与预后建模；开展液体活检（cfRNA/ctDNA）方法学与临床转化分析。</p>
           <p class="muted">原则：可复现、可解释、可落地。只要有数据，就能分析 (●'◡'●)。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 工具：GI 单基因分析平台（新加） -->
+    <section id="tools" class="reveal">
+      <div class="section-header">
+        <h2 class="section-title">工具</h2>
+        <a class="link" id="openNetaaHeader" href="#" target="_blank" rel="noopener noreferrer">打开平台 →</a>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="thumb" style="
+            background-image:
+              url('assets/netaa_cover.png'),
+              linear-gradient(135deg, rgba(123,92,255,.35), rgba(0,219,255,.35));
+            background-size: cover;
+            background-position: center;">
+          </div>
+          <div class="body">
+            <h3>GI 肿瘤单基因分析平台</h3>
+            <p>
+              面向消化道肿瘤的单基因“自动化体检”：10 个数据集（bulk/cfRNA/scRNA-seq）分期、预后、免疫浸润、GSEA 等一键跑完；
+              再把结果送入多个 AI 模型总结，最后由 Kimi 进行二次汇总。
+            </p>
+
+            <div class="tags">
+              <span class="tag">10 cohorts</span>
+              <span class="tag">Stage/Prognosis</span>
+              <span class="tag">GSEA/GSVA</span>
+              <span class="tag">AI Summary</span>
+            </div>
+
+            <div class="card-actions">
+              <a class="pill-btn primary" id="openNetaaCard" href="#" target="_blank" rel="noopener noreferrer">🔗 新窗口打开平台</a>
+              <a class="pill-btn" href="#projects">📌 继续看其它项目</a>
+            </div>
+
+            <!-- 预览图：把图片放到仓库 assets/ 目录里 -->
+            <div class="mini-previews" aria-label="平台功能预览图">
+              <a href="#" class="shot" id="shot1Link" target="_blank" rel="noopener noreferrer" title="预览图 1：总览/入口">
+                <img src="assets/netaa_shot1.png" alt="GI 单基因平台预览图 1">
+              </a>
+              <a href="#" class="shot" id="shot2Link" target="_blank" rel="noopener noreferrer" title="预览图 2：分析结果示例">
+                <img src="assets/netaa_shot2.png" alt="GI 单基因平台预览图 2">
+              </a>
+              <a href="#" class="shot" id="shot3Link" target="_blank" rel="noopener noreferrer" title="预览图 3：AI 汇总示例">
+                <img src="assets/netaa_shot3.png" alt="GI 单基因平台预览图 3">
+              </a>
+            </div>
+
+            <p class="muted" style="margin-top:10px; font-size:14px">
+              备注：上面三张是“静态预览图”（放在 GitHub Pages 仓库里），不依赖平台服务器也能展示。
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="body">
+            <h3 style="margin-top:0">这平台能做什么（访客一眼看懂版）</h3>
+            <div class="timeline">
+              <div class="tl-item">
+                <div class="tl-title">输入一个基因</div>
+                <div class="tl-meta">比如 ITGAV / RNF31 / SLC46A1 ……</div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-title">自动跑 10 个队列</div>
+                <div class="tl-meta">bulk + cfRNA + scRNA-seq，多数据源交叉验证</div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-title">输出核心结论 + 图</div>
+                <div class="tl-meta">分期、预后、免疫、富集分析；并给出可复现的结果结构</div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-title">多模型 AI 总结</div>
+                <div class="tl-meta">先多模型汇总，再由 Kimi 二次总结成报告风格</div>
+              </div>
+            </div>
+            <p class="muted" style="margin:0">
+              目标：把“单基因探索”从半天手工活，压缩到可复用的一键流程。
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -217,7 +383,7 @@
           <h3 style="margin-top:0">社交与邮箱</h3>
           <p>📧 <a class="link" href="mailto:honghaopeng@bjmu.edu.cn">honghaopeng@bjmu.edu.cn</a></p>
           <p>🐙 <a class="link" id="ghLink" href="#" target="_blank" rel="noreferrer">GitHub</a></p>
-          <p>🌐 <a class="link" href="/" rel="noreferrer">hhp.github.io</a></p>
+          <p>🌐 <a class="link" id="siteLink" href="#" rel="noreferrer">主页</a></p>
         </div></div>
         <div class="card"><div class="body">
           <h3 style="margin-top:0">合作方向</h3>
@@ -245,6 +411,11 @@
   </div>
 
 <script>
+  // =========================
+  // 0) 配置：平台地址（将来换域名就改这里）
+  // =========================
+  const NETAA_URL = "https://netaa.dpdns.org/";
+
   // 年份
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -277,10 +448,15 @@
 
   // 自动推断并填充 GitHub 链接与“更多项目”
   (function(){
-    const host = location.host; // e.g., username.github.io
+    const host = location.host; // e.g., username.github.io 或自定义域名
     const m = host.match(/^([^.]+)\.github\.io$/i);
     const gh = document.getElementById('ghLink');
     const more = document.getElementById('moreRepos');
+    const site = document.getElementById('siteLink');
+
+    // 主页链接：永远指向当前站点（兼容自定义域名）
+    if(site){ site.href = location.origin; site.textContent = location.host; }
+
     if(m){
       const u = m[1];
       if(gh){ gh.href = 'https://github.com/'+u; gh.textContent = 'github.com/'+u; }
@@ -288,8 +464,22 @@
     }else{
       // 无法解析用户名时隐藏“更多项目”
       if(more) more.style.display = 'none';
+      // GitHub 仍然保留占位（你也可以在这里手动写死你的 GitHub 链接）
+      if(gh && !gh.href){ gh.href = "https://github.com/"; gh.textContent = "GitHub"; }
     }
   })();
+
+  // =========================
+  // 1) 把所有“打开平台”的链接统一指向 NETAA_URL，并新窗口打开
+  // =========================
+  const setNetaaLink = (id) => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.href = NETAA_URL;
+    el.target = "_blank";
+    el.rel = "noopener noreferrer";
+  };
+  ["openNetaaTop","openNetaaHeader","openNetaaCard","shot1Link","shot2Link","shot3Link"].forEach(setNetaaLink);
 </script>
 
 </body>
