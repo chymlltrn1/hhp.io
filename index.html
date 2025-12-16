@@ -8,15 +8,15 @@
 <meta name="color-scheme" content="light dark">
 
 <style>
+  /* ... (保持之前的 CSS 样式不变，这里省略以节省空间，直接用你上一版保存的样式即可) ... */
+  /* 为了方便，我把你需要覆盖的 CSS 再次列出，确保万无一失，你可以直接保留原来的 <style> 标签内容 */
   :root{
-    /* 深色模式基底 */
     --bg1:#0f1323; --bg2:#1a1440; --glass:rgba(255,255,255,.05);
     --text:#e9ecf1; --muted:#94a3b8; --card:#1e293b99; --border:rgba(255,255,255,.12);
     --accent:#6366f1; --accent-glow:rgba(99,102,241,0.4); 
     --radius:16px; --shadow:0 10px 40px -10px rgba(0,0,0,.6);
   }
   [data-theme="light"]{
-    /* 浅色模式基底 */
     --bg1:#f8fafc; --bg2:#eef2ff; --glass:rgba(255,255,255,.75);
     --text:#1e293b; --muted:#64748b; --card:#ffffffe6; --border:rgba(0,0,0,.08);
     --accent:#3b82f6; --accent-glow:rgba(59,130,246,0.3);
@@ -25,7 +25,6 @@
   *{box-sizing:border-box} html{scroll-behavior:smooth}
   body{
     margin:0; color:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    /* 背景纹理优化，增加一点科技感颗粒 */
     background: 
         radial-gradient(at 10% 10%, rgba(99,102,241,0.15) 0, transparent 50%),
         radial-gradient(at 90% 90%, rgba(6,182,212,0.15) 0, transparent 50%),
@@ -33,106 +32,58 @@
     background-attachment: fixed; line-height:1.6;
   }
   .wrap{max-width:1100px; margin:0 auto; padding:0 24px}
-
-  /* 导航 */
   .nav{position:sticky; top:0; z-index:100; backdrop-filter:blur(16px); border-bottom:1px solid var(--border); background:rgba(var(--bg1), 0.7);}
   .nav .inner{display:flex; align-items:center; justify-content:space-between; height:64px}
   .brand{font-weight:800; font-size:20px; letter-spacing:-0.5px; background:linear-gradient(135deg,var(--accent),#06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-decoration:none;}
   .menu{display:flex; gap:24px; align-items:center}
   .menu a{color:var(--text); text-decoration:none; font-size:14px; font-weight:500; transition:color .2s}
   .menu a:hover{color:var(--accent)}
-  .btn-cta{padding:8px 16px; border-radius:99px; background:var(--accent); color:white!important; font-weight:600; box-shadow:0 4px 12px var(--accent-glow); transition:transform .2s}
+  .btn-cta{padding:8px 16px; border-radius:999px; background:var(--accent); color:white!important; font-weight:600; box-shadow:0 4px 12px var(--accent-glow); transition:transform .2s}
   .btn-cta:hover{transform:translateY(-1px)}
-
-  /* Hero */
   .hero{padding:110px 0 70px; text-align:center}
-  .hero h1{
-    font-size:clamp(42px, 7vw, 68px); line-height:1.05; margin:0 0 24px; font-weight:800; letter-spacing:-1.5px;
-    background:linear-gradient(135deg,var(--text) 20%, var(--muted) 80%); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  }
+  .hero h1{font-size:clamp(42px, 7vw, 68px); line-height:1.05; margin:0 0 24px; font-weight:800; letter-spacing:-1.5px; background:linear-gradient(135deg,var(--text) 20%, var(--muted) 80%); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
   .hero p{font-size:20px; color:var(--muted); max-width:640px; margin:0 auto 36px; font-weight:400}
   .tags{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:48px}
   .tag{padding:6px 14px; border-radius:99px; background:var(--glass); border:1px solid var(--border); font-size:13px; color:var(--muted); font-weight:500}
-
-  /* 通用布局 */
   section{padding:70px 0}
   .sec-head{margin-bottom:48px; text-align:center}
   .sec-title{font-size:32px; font-weight:700; margin:0; letter-spacing:-0.5px}
   .grid{display:grid; gap:24px}
   @media(min-width:768px){ .grid-2{grid-template-columns:1fr 1fr} .grid-3{grid-template-columns:repeat(3,1fr)} }
-
-  /* 卡片优化 */
   .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; transition:all .3s cubic-bezier(0.4, 0, 0.2, 1)}
   .card:hover{transform:translateY(-6px); box-shadow:var(--shadow); border-color:var(--accent)}
   .card-body{padding:28px}
   .card-img{height:220px; background-size:cover; background-position:center; border-bottom:1px solid var(--border); position:relative}
-  /* 给卡片图片加一个科研感的滤镜蒙版 */
   .card-img::after{content:""; position:absolute; inset:0; background:linear-gradient(to top, var(--card), transparent 80%);}
-
-  /* === 工具平台展示 (SaaS风格) === */
-  .tool-showcase{
-    background:var(--glass); border:1px solid var(--border); border-radius:24px; padding:40px;
-    display:grid; gap:40px; box-shadow:var(--shadow);
-  }
+  .tool-showcase{background:var(--glass); border:1px solid var(--border); border-radius:24px; padding:40px; display:grid; gap:40px; box-shadow:var(--shadow);}
   @media(min-width:960px){ .tool-showcase{grid-template-columns: 1.1fr 1.9fr; align-items:center} }
-
   .tool-content h3{font-size:30px; margin:0 0 20px; background:linear-gradient(135deg,var(--accent),#06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
   .tool-desc{color:var(--text); font-size:17px; margin-bottom:28px; line-height:1.7; opacity:.9}
-  
-  /* 功能列表 */
   .feature-list{list-style:none; padding:0; margin:0 0 36px; display:grid; gap:12px}
   .feature-list li{position:relative; padding-left:28px; color:var(--muted); font-weight:500}
   .feature-list li::before{content:"✓"; position:absolute; left:0; color:var(--accent); font-weight:900; font-size:18px}
-
   .tool-btns{display:flex; gap:16px; flex-wrap:wrap}
-  .btn{
-    display:inline-flex; align-items:center; justify-content:center; gap:8px;
-    padding:12px 24px; border-radius:12px; text-decoration:none; font-weight:600; font-size:15px; transition:all .2s; cursor:pointer;
-  }
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 24px; border-radius:12px; text-decoration:none; font-weight:600; font-size:15px; transition:all .2s; cursor:pointer;}
   .btn-primary{background:var(--accent); color:white; box-shadow:0 8px 20px -4px var(--accent-glow); border:none}
   .btn-primary:hover{transform:translateY(-2px); box-shadow:0 12px 24px -4px var(--accent-glow)}
   .btn-outline{border:2px solid var(--border); color:var(--text); background:transparent; padding:10px 22px}
   .btn-outline:hover{border-color:var(--accent); color:var(--accent); background:rgba(var(--accent),0.05)}
-
-  /* 图片画廊优化 */
-  .gallery-grid{
-    display:grid; gap:16px;
-    grid-template-areas: 
-      "main main"
-      "sub1 sub2";
-  }
-  .g-item{
-    position:relative; border-radius:14px; overflow:hidden; border:2px solid var(--border); cursor:zoom-in;
-    aspect-ratio: 16/9;box-shadow:0 4px 20px rgba(0,0,0,.1); transition:all .3s;
-  }
+  .gallery-grid{display:grid; gap:16px; grid-template-areas: "main main" "sub1 sub2";}
+  .g-item{position:relative; border-radius:14px; overflow:hidden; border:2px solid var(--border); cursor:zoom-in; aspect-ratio: 16/9;box-shadow:0 4px 20px rgba(0,0,0,.1); transition:all .3s;}
   .g-item:hover{border-color:var(--accent); box-shadow:0 8px 30px rgba(0,0,0,.2)}
   .g-item.main{grid-area:main;} 
   .g-item img{width:100%; height:100%; object-fit:cover; transition:transform .6s cubic-bezier(0.4, 0, 0.2, 1)}
   .g-item:hover img{transform:scale(1.05)}
-  .g-item::after{
-    content:"🔍 点击查看高清大图"; position:absolute; bottom:12px; right:12px;
-    background:rgba(0,0,0,0.7); color:white; font-size:13px; padding:6px 12px; border-radius:99px;
-    opacity:0; transition:all .3s; backdrop-filter:blur(4px); pointer-events:none; font-weight:500;
-  }
-  .g-item:hover::after{opacity:1; bottom:16px}
-
-  /* 图片灯箱 */
-  .lightbox{
-    position:fixed; inset:0; z-index:999; background:rgba(0,0,0,0.92);
-    display:none; justify-content:center; align-items:center; padding:24px; backdrop-filter:blur(12px);
-  }
+  .lightbox{position:fixed; inset:0; z-index:999; background:rgba(0,0,0,0.92); display:none; justify-content:center; align-items:center; padding:24px; backdrop-filter:blur(12px);}
   .lightbox.active{display:flex; animation:fadeIn .25s ease-out}
   .lightbox img{max-width:100%; max-height:92vh; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.5); transform:scale(0.95); transition:transform .3s}
   .lightbox.active img{transform:scale(1)}
   .lb-close{position:absolute; top:24px; right:32px; color:white; font-size:32px; cursor:pointer; opacity:.7; transition:opacity .2s; background:rgba(255,255,255,0.1); width:48px; height:48px; display:flex; align-items:center; justify-content:center; border-radius:50%}
   .lb-close:hover{opacity:1; background:rgba(255,255,255,0.2)}
   @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-
-  /* 其它项目微调 */
   .card h3{font-size:22px; margin:0 0 12px}
   .proj-meta{display:flex; gap:8px; margin-top:20px; flex-wrap:wrap}
   .proj-tag{font-size:12px; padding:4px 10px; border-radius:6px; background:var(--bg1); border:1px solid var(--border); color:var(--muted); font-weight:600}
-
   footer{text-align:center; padding:60px 0; color:var(--muted); font-size:15px; border-top:1px solid var(--border); margin-top:80px; background:rgba(var(--bg1),0.5)}
 </style>
 </head>
@@ -162,7 +113,7 @@
       <span class="tag">AI for Science</span>
     </div>
     <div style="display:flex; justify-content:center; gap:20px">
-      <a href="#platform" class="btn btn-primary">🚀 查看分析平台</a>
+      <a href="report.html" target="_blank" class="btn btn-primary">📊 查看 SLC6A6 分析报告 (Demo)</a>
       <a href="#research" class="btn btn-outline">📄 浏览研究项目</a>
     </div>
   </header>
@@ -183,13 +134,14 @@
         </ul>
 
         <div class="tool-btns">
-          <a href="https://netaa.dpdns.org/" target="_blank" class="btn btn-primary">🚀 启动平台 (Live Demo)</a>
+          <a href="https://netaa.dpdns.org/" target="_blank" class="btn btn-primary">🚀 启动平台 (Live)</a>
+          <a href="report.html" target="_blank" class="btn btn-outline">📊 查看结果示例 (SLC6A6)</a>
         </div>
       </div>
 
       <div class="gallery-grid">
         <div class="g-item main" onclick="openLightbox(this)">
-          <img src="assets/netaa_cover.png.png" alt="平台概览图封面">
+          <img src="assets/netaa_cover.png" alt="平台概览图封面">
         </div>
         <div class="g-item" onclick="openLightbox(this)">
           <img src="assets/netaa_shot1.png" alt="分析结果展示">
@@ -272,17 +224,15 @@
     const src = el.querySelector('img').src;
     lbImg.src = src;
     lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden'; // 禁止背景滚动
+    document.body.style.overflow = 'hidden'; 
   }
 
   function closeLightbox(e) {
-    // 点击图片本身不关闭，点击背景或关闭按钮才关闭
     if (e.target.id === 'lb-img') return;
     lightbox.classList.remove('active');
     document.body.style.overflow = '';
   }
 
-  // 键盘 ESC 关闭
   document.addEventListener('keydown', function(e) {
     if (e.key === "Escape") closeLightbox(e);
   });
